@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <header class="inline-group">
+    <h1 style="display: inline;">Tasks todo</h1>
+    <a href="{% url 'todo:task-create' %}"
+       class="btn btn-success"
+       style="display: inline;">Add task</a>
+  </header>
+  
+  {% if task_list %}
+    <ol style="margin-top: 10px">
+      {% for task in task_list %}
+        <li>
+          <h5 style="display: inline;">{{ task.content }}</h5>
+            
+            <form action="{% url 'todo:task-complete' pk=task.id %}" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              {% if task.completed %}
+                <p style="display: inline; color: green">Done</p>
+                <button type="submit" class="btn btn-secondary">
+                  Undo
+                </button>
+              {% else %}
+                <p style="display: inline; color: red">In progress</p>
+                <button type="submit" class="btn btn-success link-to-page">
+                  Complete
+                </button>
+              {% endif %}
+            </form>
+          <ul>
+            <li>
+              <p>Created at: {{ task.created_at }}</p>
+              {% if task.deadline %}
+                <p style="color: red"> DEADLINE: {{ task.deadline }}</p>
+              {% endif %}
+            </li>
+            <li>
+              <p><strong>Tags:</strong></p>
+              {% for tag in task.tags.all %}
+                <p><i>#{{ tag.name }}</i></p>
+              {% endfor %}
+            </li>
+          </ul>
+          <a href="{% url 'todo:task-delete' pk=task.id %}" class="btn btn-danger form-inline">Delete</a>
+          <a href="{% url 'todo:task-update' pk=task.id %}" class="btn btn-secondary form-inline">Update</a>
+        </li>
+        <hr>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p>You haven't created any task yet</p>
+  {% endif %}
+    
+      
+{% endblock %}
