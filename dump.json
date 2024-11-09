@@ -1,0 +1,50 @@
+[
+{
+    "model": "todo.task",
+    "pk": 2,
+    "fields": {
+        "content": "Eat",
+        "created_at": "2024-11-09T13:37:27.546Z",
+        "deadline": "2024-11-09T22:00:00Z",
+        "completed": true,
+        "tags": [
+            1
+        ]
+    }
+},
+{
+    "model": "todo.task",
+    "pk": 6,
+    "fields": {
+        "content": "Hang out with friends",
+        "created_at": "2024-11-09T14:42:40.522Z",
+        "deadline": null,
+        "completed": false,
+        "tags": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "todo.tag",
+    "pk": 1,
+    "fields": {
+        "name": "Eat"
+    }
+},
+{
+    "model": "todo.tag",
+    "pk": 2,
+    "fields": {
+        "name": "Go outside"
+    }
+},
+{
+    "model": "todo.tag",
+    "pk": 4,
+    "fields": {
+        "name": "Home"
+    }
+}
+]
